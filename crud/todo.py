@@ -3,8 +3,8 @@ import uuid
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from todo.models.todo import Todo 
-from todo.schemas.todo import Todo 
+from models.todo import Todo 
+from schemas.todo import TodoCreate, TodoUpdate 
 
 async def get_todos(
         db: AsyncSession,

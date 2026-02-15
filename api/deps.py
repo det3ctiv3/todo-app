@@ -2,18 +2,18 @@ from typing import Annotated
 
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
-from sqlalchemy.ext.asyncion import AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from todo.database import async_session_maker
-from todo.core.security import decode_access_token
-from todo.crud.user import get_user_by_id
-from todo.models.user import User
+from database import async_session_maker
+from core.security import decode_access_token
+from crud.user import get_user_by_id
+from models.user import User
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
 async def get_db():
     # Yield a database session per request, then close it
-    async def async_session_maker() as session:
+    async with async_session_maker() as session:
         yield session
 
 
@@ -26,7 +26,7 @@ async def get_current_user(
     if payload is None:
         raise HTTPException(
             status_code = status.HTTP_401_UNAUTHORIZED,
-            detail = "Invalid or expired token"
+            detail = "Invalid or expired token",
             headers = {"WWW-Authenticate": "Bearer"},
         )
 

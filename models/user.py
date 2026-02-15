@@ -1,10 +1,10 @@
 import uuid
 from datetime import datetime, timezone
 
-from sqlalchemy import String, datetime
-from sqlalchemy import Mapped, mapped_column, relationship
+from sqlalchemy import String, DateTime
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from todo.database import Base
+from database import Base
 
 class User(Base):
     __tablename__ = "users"
@@ -15,18 +15,18 @@ class User(Base):
             )
     email: Mapped[str] = mapped_column(
             String(255),
-            unique=true, 
-            index=true,
+            unique=True, 
+            index=True,
             nullable=False,
             )
 
-    hashed_password: Mapped(str) = mapped_column(
+    hashed_password: Mapped[str] = mapped_column(
             String(255),
             nullable=False,
             )
     
-    is_active:Mapped(bool) = mapped_column(default=True)
-    created_at:Mapped(datetime) = mapped_column(
+    is_active:Mapped[bool] = mapped_column(default=True)
+    created_at:Mapped[bool] = mapped_column(
             DateTime(timezone=True),
             default=lambda: datetime.now(timezone.utc),
             )

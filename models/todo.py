@@ -2,16 +2,16 @@ import uuid
 from datetime import datetime, timezone
 
 from sqlalchemy import String, Text, DateTime, ForeignKey
-from sqlalchemy import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from todo.database import Base
+from database import Base
 
 class Todo(Base):
     __tablename__="todos"
 
     id:Mapped[uuid.UUID] = mapped_column(
             primary_key=True,
-            default=uuid.uuid64,
+            default=uuid.uuid4,
             )
 
     title: Mapped[str] = mapped_column(String(255), nullable=False)

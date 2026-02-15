@@ -3,8 +3,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI 
 from fastapi.middleware.cors import CORSMiddleware
 
-from todo.config import settings 
-from todo.api.routes import auth, todos
+from config import settings 
+from api.routes import auth, todos
 
 
 @asynccontextmanager

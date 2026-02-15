@@ -3,11 +3,11 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from todo.api.deps import get_db, get_current_user
-from todo.core.security import verify_password, create_access_token
-from todo.crud.user import create_user, get_user_by_email
-from todo.models.user import User 
-from todo.schemas.user import UserCreate, UserLogin, UserRead, Token 
+from api.deps import get_db, get_current_user
+from core.security import verify_password, create_access_token
+from crud.user import create_user, get_user_by_email
+from models.user import User 
+from schemas.user import UserCreate, UserLogin, UserRead, Token 
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 

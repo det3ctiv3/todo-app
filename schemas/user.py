@@ -1,4 +1,4 @@
-import uid 
+import uuid  
 from datetime import datetime 
 
 from pydantic import BaseModel, EmailStr, ConfigDict
@@ -17,11 +17,11 @@ class UserLogin(BaseModel):
 # Output Schemas
 
 class UserRead(BaseModel):
-    model_config: ConfigDict(from_attributes=True)
+    model_config = ConfigDict(from_attributes=True)
 
     id: uuid.UUID 
     email: EmailStr
-    is_active: Bool
+    is_active: bool
     created_at: datetime
 
 class Token(BaseModel):
